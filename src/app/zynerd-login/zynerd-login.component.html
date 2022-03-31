@@ -1,0 +1,7 @@
+<div>
+    <input type="email" name="email" [(ngModel)]="userName" required (change)="onEmailValidate()" />
+    <span >{{isEmailErrorMsg}}</span>
+    <input type="password" name="password"  [(ngModel)]="password" required />
+    <span ></span>
+    <input type="button" name="submit" value="Login" (click)="onLogin()">
+</div>
