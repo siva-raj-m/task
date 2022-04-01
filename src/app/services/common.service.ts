@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CommonService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
@@ -26,14 +27,16 @@ export class CommonService {
       email: userName,
       password: password,
     };
-    return this.http.post(environment.apiUrl + 'user_sessions/login', data).pipe(
-      map((result: any) => {
-        if (result.success) {
-          localStorage.setItem('token', JSON.stringify(result.data.token));
-          return result;
-        }
-      })
-    );
+    return this.http
+      .post(environment.apiUrl + 'user_sessions/login', data)
+      .pipe(
+        map((result: any) => {
+          if (result.success) {
+            localStorage.setItem('token', JSON.stringify(result.data.token));
+            return result;
+          }
+        })
+      );
   }
   public logout() {
     localStorage.removeItem('token');
@@ -41,7 +44,11 @@ export class CommonService {
     this.router.navigate(['']);
   }
 
-  public getCounsellingsList(){
-    return this.http.get(environment.apiUrl + 'allotments/counsellings');
+  public getCounsellingsList() {
+    let header = new HttpHeaders().set(
+      "Authorization",
+      this.userValue
+    );
+    return this.http.get(environment.apiUrl + 'allotments/counsellings',{headers:header});
   }
 }
