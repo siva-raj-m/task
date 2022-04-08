@@ -1,7 +1,17 @@
-<div>
-    <input type="email" name="email" [(ngModel)]="userName" required (change)="onEmailValidate()" />
-    <span >{{isEmailErrorMsg}}</span>
-    <input type="password" name="password"  [(ngModel)]="password" required />
-    <span ></span>
-    <input type="button" name="submit" value="Login" (click)="onLogin()">
+<div class="container">
+  <label for="uname"><b>Username</b></label>
+  <input
+    type="email"
+    name="email"
+    [(ngModel)]="userName"
+    required
+    (change)="onEmailValidate()"
+  />
+
+  <label for="psw"><b>Password</b></label>
+  <input type="password" name="password" [(ngModel)]="password" required />
+  <input type="button" name="submit" class="button" value="Login" (click)="onLogin()">
+  <label>
+    <input type="checkbox" checked="checked" name="remember" /> Remember me
+  </label>
 </div>

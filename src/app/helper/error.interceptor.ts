@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.commonService.logout();
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err.status;
             return throwError(error);
         }))
     }
