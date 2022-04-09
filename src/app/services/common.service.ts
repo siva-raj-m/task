@@ -8,7 +8,6 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-
 export class CommonService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
@@ -44,11 +43,18 @@ export class CommonService {
     this.router.navigate(['']);
   }
 
-  public getCounsellingsList() {
-    let header = new HttpHeaders().set(
-      "Authorization",
-      this.userValue
-    );
-    return this.http.get(environment.apiUrl + 'allotments/counsellings',{headers:header});
+  public getCounsellingsList() :Observable<any[]>{
+    let header = new HttpHeaders().set('Authorization', this.userValue);
+    // return this.http.get(environment.apiUrl + 'allotments/counsellings',{headers:header});
+    return this.http
+      .get(environment.apiUrl + 'allotments/counsellings')
+      .pipe(map((data: any) => data));
+  }
+  public getFilterData(id:number) :Observable<any[]>{
+    // let header = new HttpHeaders().set('Authorization', this.userValue);
+    // return this.http.get(environment.apiUrl + 'allotments/counsellings',{headers:header});
+    return this.http
+      .get(environment.apiUrl + 'allotments?counselling_id='+id)
+      .pipe(map((data: any) => data));
   }
 }

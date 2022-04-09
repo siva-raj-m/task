@@ -10,13 +10,15 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BasicAuthInterceptor } from './helper/basic-auth.interceptor';
 import { ErrorInterceptor } from './helper/error.interceptor';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ZynerdLoginComponent,
     DashboardComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
