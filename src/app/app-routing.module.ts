@@ -6,10 +6,16 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ZynerdLoginComponent } from './zynerd-login/zynerd-login.component';
 import { AuthGuard } from './helper/auth.gurd';
+import { ContentComponent } from './content/content.component';
 
 const routes: Routes = [
   { path: '', component: ZynerdLoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
+  children: [
+    {
+      path:'counselling', component: ContentComponent
+    }
+  ] },
 ];
 
 @NgModule({

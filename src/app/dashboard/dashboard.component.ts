@@ -7,7 +7,7 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+public data=[];
   constructor(private commonService: CommonService ) {
     console.log('test1')
     this.commonService.getCounsellingsList()
@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
     console.log('test')
     this.commonService.getCounsellingsList().subscribe((data: any) => {
       console.log(data);
+      this.data=data;
     })
   }
 
